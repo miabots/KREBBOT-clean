@@ -12,13 +12,11 @@ An extremely fun discord moderation/utility bot
 
 ___
 
-Hello! Welcome to KREBBOT!
+## Hello! Welcome to KREBBOT!
 
 KREBBOT was a fun little coding experiment, turned passion project, turned actual useful bot. Plus, this has been a great learning experience for me with Python.
 
-KREBBOT is still very much in progress. I am slowly implementing things, often in bursts of random coding!
-
-I have a lot of ideas, but this is easily the biggest software product I have ever coded so I am taking things slow to ensure proper devops, etc.
+If you want to use the production version of KREBBOT on your Discord Server, you can invite the Bot using the dedicated link [HERE](https://discord.com/api/oauth2/authorize?client_id=855450076011561001&permissions=8&scope=applications.commands%20bot)
 
 ## Features of note:
 
