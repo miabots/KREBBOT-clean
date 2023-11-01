@@ -25,7 +25,6 @@ If you want to use the production version of KREBBOT on your Discord Server, you
 - Fun features for users like Tarot cards, Astronomy/Astrology, etc.
 - Moderation and Utility commands for power users
 - A modular, OO-structured format of modules using the Cogs framework
-- Dev Ops & SCM Management including deployment to a dedicated VPS
 - Message parsing, handling, and storing in user-friendly formats
 - Dedicated reminder system/early Personal Assistant features
 - Automatic Role Assignment (or other actions) based on any user action, including reacts
