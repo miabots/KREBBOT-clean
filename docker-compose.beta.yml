@@ -1,0 +1,34 @@
+version: '3.9'  # Use a Docker Compose file version suitable for your setup
+
+volumes:
+  certbot-etc:
+  certbot-www:
+  db-data-beta:
+  backups:
+  
+services:
+  app-bot:
+    build: 
+      context: ./app-bot
+      args:
+         APP_ENV: "beta"
+    ports:
+      - "4444:4444"
+    depends_on:
+      - db
+    
+  db:
+    build: 
+      context: ./db
+      args:
+        POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+        DB_ENV: "beta"
+    ports:
+      - "5431:5431"
+    volumes:
+      - db-data-beta:/var/lib/postgresql/data
+      - ./backups:/backups
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      DB_ENV: "beta"
+      PGPORT: 5431

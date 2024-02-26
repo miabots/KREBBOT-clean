@@ -1,0 +1,62 @@
+version: '3.9' # Use a Docker Compose file version suitable for your setup
+
+volumes:
+  certbot-etc:
+  certbot-www:
+  db-data-live:
+  jenkins-data:
+  backups:
+
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # For Certbot (adjust paths if needed)
+      - certbot-etc:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    depends_on:
+      - app-bot
+      - db
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    build:
+      context: ./jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    environment:
+      - JENKINS_OPTS="--prefix=/jenkins"
+
+  app-bot:
+    build:
+      context: ./app-bot
+      args:
+        APP_ENV: "live"
+    ports:
+      - "4444:4444"
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./db
+      args:
+        POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+        DB_ENV: "live"
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data-live:/var/lib/postgresql/data
+      - ./backups:/backups
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      DB_ENV: "live"
+      PGPORT: 5432
