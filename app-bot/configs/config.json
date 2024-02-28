@@ -3,5 +3,5 @@
     "beta": false,
     "error_channel": 942864411335487528,
     "owners": [],
-    "db_uri": "postgres://postgres:oLQ0qXF7!@127.0.0.1:5432/KREBBOTDB"
+    "db_uri": "postgres://postgres:@127.0.0.1:5432/KREBBOTDB"
 }
